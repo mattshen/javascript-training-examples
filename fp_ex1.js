@@ -32,3 +32,30 @@ var averageAge = ages.reduce(function(prev, curr){
 console.log("developer average age: \n", averageAge);
 
 console.log("make sure no one on bench: \n", employees.every(function(e){ return !e.onTheBench }));
+
+//reusable function
+Array.prototype.groupBy = function(keyFunction) {
+    var groups = {};
+    this.forEach(function(el) {
+        var key = keyFunction(el);
+        if (key in groups == false) {
+            groups[key] = [];
+        }
+        groups[key].push(el);
+    });
+    return Object.keys(groups).map(function(key) {
+        return {
+            key: key,
+            values: groups[key]
+        };
+    });
+};
+
+var groupedEmployees = employees.groupBy(function(e){ return e.title });
+//console.log("grouped employees:\n", groupedEmployees);
+for(var key in groupedEmployees) {
+    if (groupedEmployees.hasOwnProperty(key)) {
+        console.log(groupedEmployees[key]);
+    }
+}
+
