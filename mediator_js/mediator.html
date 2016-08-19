@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ex1</title>
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+        <script src="mediator.js"></script>
+    </head>
+<body>
+    <div id="display" style="font-size: 24px;height:50px;">Just start...</div>
+    <div id="buttonPanel">
+        <button id="viewBtn" name="viewBtn">View</button>
+        <button id="bookBtn" name="bookBtn">Book</button> 
+        <button id="searchBtn" name="searchBtn">Search</button>        
+    </div>
+</body>
+<script>
+/*
+    $('#viewBtn').click(function(e){
+        $('#viewBtn').prop('disabled', true);
+        $('#bookBtn').prop('disabled', false);
+        $('#searchBtn').prop('disabled', false);
+        $('#display').text("Viewing...");
+    });
+
+    $('#bookBtn').click(function(e){
+        $('#viewBtn').prop('disabled', false);
+        $('#bookBtn').prop('disabled', true);
+        $('#searchBtn').prop('disabled', false);
+        $('#display').text("Booking...");
+    });
+
+
+    $('#searchBtn').click(function(e){
+        $('#viewBtn').prop('disabled', false);
+        $('#bookBtn').prop('disabled', false);
+        $('#searchBtn').prop('disabled', true);
+        $('#display').text("Searching...");
+    });
+*/
+
+$(document).ready(function(){
+    Mediator(
+        Display('display'),
+        {
+            view: Button('viewBtn', function(){
+                console.log('call backend...');
+            }),
+            book: Button('bookBtn', function(){
+                console.log('call backend...');
+            }),
+            search: Button('searchBtn', function(){
+                console.log('call backend...');
+            })
+        }
+    );
+});
+
+
+</script>
+</html>
