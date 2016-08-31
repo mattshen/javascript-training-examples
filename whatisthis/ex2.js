@@ -20,7 +20,7 @@ var name = 'Bob',
     };
 
 
-//solution
+//solution 1
 var name = 'Bob',
     person = {
         name: 'Alice',
@@ -33,5 +33,24 @@ var name = 'Bob',
             }.bind(this);
         }
     };
+person.sayName()();
+
+
+//solution 2
+var name = 'Bob',
+    person = {
+        name: 'Alice',
+        sayName: function() {
+            console.log(this === person);    // true
+            var that = this;
+            return function() {
+                console.log(that === person);    // true
+                console.log(that === window);    // false
+                console.log(that.name);          // Alice
+            };
+        }
+    };
 
 person.sayName()();
+
+
